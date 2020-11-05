@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-1">
+            <div class="logIn">
+                <img style="width: 200px; margin-bottom: 15px;" src="imagne.png">
+
+                <form class="username" style="width: 100%">
+                    <div class="form-group">
+                        <label class="form-group-label1" style="display:@disply1;">Username</label>
+                        <input type="text" placeholder="Enter Username"
+                               class="form-control input-lg" @oninput="@((arg) => change(arg))"/>
+                    </div>
+                </form>
+
+                <form class="password" style="width: 100%">
+                    <div class="form-group">
+                        <label class="form-group-label2" style="display:@disply2;"> Passord </label>
+                        <input type="password" placeholder="Enter Password" 
+                               class="form-control input-lg" @oninput="(arg) => change2(arg)"/>
+                    </div>
+                </form>
+
+                <button type="submit" class="logInBtn" >Log In</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    private string disply1 = "none";
+    private string disply2 = "none";
+    
+    private void change(ChangeEventArgs changeEventArgs)
+    {
+        if (!string.IsNullOrEmpty(changeEventArgs.Value.ToString()))
+        {
+            disply1 = "block";
+        }
+        else
+        {
+            disply1 = "none";
+        }
+    }    
+    
+    private void change2(ChangeEventArgs changeEventArgs)
+    {
+        if (!string.IsNullOrEmpty(changeEventArgs.Value.ToString()))
+        {
+            disply2 = "block";
+        }
+        else
+        {
+            disply2 = "none";
+        }
+    }
+}
