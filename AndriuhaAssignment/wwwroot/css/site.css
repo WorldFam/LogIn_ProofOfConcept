@@ -181,12 +181,22 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
+
+    .logout {
+        margin-top: 20px;
+        margin-left: auto;
+    }
 }
 
 body {
     background-color: rgba(246,246,250,1);
     height: 100%;
 }
+
+.container {
+    margin-top: 40px;
+}
+
 .form-group{
     padding-top: 1px;
     border:2px solid;
@@ -243,4 +253,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .logout {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+}
+
+.logout {
+    margin-top: 200px;
+    color: white;
+    background: black;
+    text-align: center;
+    height: 40px;
+    width: 250px;
+    border-radius: 7px;
+    margin-left: 400px;
+    text-decoration: none;
+}
+
+.logout:hover
+{
+    background: red;
+    color: black;   
 }

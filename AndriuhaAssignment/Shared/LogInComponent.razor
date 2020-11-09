@@ -1,0 +1,128 @@
+@page "/login"
+@using AndriuhaAssignment.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="container">
+            <div class="row align-content-center">
+                <div class="col-md-4 offset-4">
+                    <div class="logIn">
+                        <img style="width: 200px; margin-bottom: 15px;" src="imagne.png">
+
+                        <form class="username" style="width: 100%">
+                            <div class="form-group">
+                                <label class="form-group-label1" style="display:@disply1;">Username</label>
+                                <input type="text" placeholder="Enter Username" name="uname" required @bind-value="username"
+                                       class="form-control input-lg" @oninput="@((arg) => change(arg))"/>
+                            </div>
+                        </form>
+                                <div style="color:red">@errorMessageUname</div>
+
+                        <form class="password" style="width: 100%">
+                            <div class="form-group">
+                                <label class="form-group-label2" style="display:@disply2;"> Passord </label>
+                                <input type="password" placeholder="Enter Password" name="psw" required @bind-value="password"
+                                       class="form-control input-lg" @oninput="(arg) => change2(arg)"/>
+                            </div>
+                        </form>
+                                <div style="color:red">@errorMessagePsw</div>
+                        
+                        <div style="color:red">@errorMessage</div>
+                        <button type="button" class="logInBtn" @onclick="PerformLogin">Log In</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </NotAuthorized>
+    <Authorized>
+        <button @onclick="PerformLogout" class="logout" type="button"> Log out</button>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private string username;
+    private string password;
+    private string errorMessage;
+    private string errorMessageUname;
+    private string errorMessagePsw;
+
+    public async Task PerformLogin()
+    {
+        errorMessageUname = "";
+        errorMessagePsw = "";
+        try
+        {
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            username = "";
+            password = "";
+        }
+        catch (Exception e)
+        {
+            if (e.Message.Equals("Response status code does not indicate success: 500 (Internal Server Error)."))
+            {
+                errorMessage = "Wrong Username or Password";
+            }
+            else if (e.Message.Equals("Enter username"))
+            {
+                errorMessageUname = e.Message;
+                errorMessagePsw = "";
+            }
+            else
+            {
+                errorMessageUname = "";
+                errorMessagePsw = e.Message;
+            }
+        }
+    }
+
+    public async Task PerformLogout()
+    {
+        errorMessageUname = "";
+        errorMessagePsw = "";
+        errorMessage = "";
+        username = "";
+        password = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    private string disply1 = "none";
+    private string disply2 = "none";
+
+    private void change(ChangeEventArgs changeEventArgs)
+    {
+        if (!string.IsNullOrEmpty(changeEventArgs.Value.ToString()))
+        {
+            disply1 = "block";
+            errorMessageUname = "";
+        }
+        else
+        {
+            disply1 = "none";
+        }
+    }
+
+    private void change2(ChangeEventArgs changeEventArgs)
+    {
+        if (!string.IsNullOrEmpty(changeEventArgs.Value.ToString()))
+        {
+            disply2 = "block";
+            errorMessagePsw = "";
+        }
+        else
+        {
+            disply2 = "none";
+        }
+    }
+
+}

@@ -43,3 +43,5 @@ C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\D
 C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\Debug\netcoreapp3.1\AndriuhaAssignment.pdb
 C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\Debug\netcoreapp3.1\AndriuhaAssignment.genruntimeconfig.cache
 C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\Debug\netcoreapp3.1\AndriuhaAssignment.csproj.CopyComplete
+C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\LogInComponent.razor.g.cs
+C:\Users\User\RiderProjects\Brazor\AndrihaHelp\Andriuha\AndriuhaAssignment\obj\Debug\netcoreapp3.1\Razor\Shared\LogInComponent.razor.g.cs
